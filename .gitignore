@@ -1,2 +1,26 @@
+# Dependências
+node_modules/
+npm-debug.log*
+
 .env
-node_modules
+.env.local
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+tmp/
+temp/
+
+# Vercel
+.vercel
+
+# Editor
+.vscode/
+*.swp
+*.swo
