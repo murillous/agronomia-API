@@ -1,11 +1,7 @@
-// api/index.js
-// API principal para receber e expor dados meteorológicos Ciclus
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
-// Importa nossas funções personalizadas
 const {
   validateWeatherData,
   cleanWeatherData,
