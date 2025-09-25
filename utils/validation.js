@@ -281,7 +281,6 @@ function validateWeatherData(data) {
   // 4. Validar cada campo que existe
   const fieldErrors = [];
   for (const [fieldName, value] of Object.entries(data)) {
-
     const fieldValidation = validateField(fieldName, value);
     if (!fieldValidation.isValid) {
       fieldErrors.push(fieldValidation.error);
