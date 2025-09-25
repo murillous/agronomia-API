@@ -381,16 +381,6 @@ Este projeto foi desenvolvido para apoiar:
 ## 📄 Licença
 
 Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### MIT License - Resumo
-
-- ✅ Uso comercial permitido
-- ✅ Modificação permitida
-- ✅ Distribuição permitida
-- ✅ Uso privado permitido
-- ⚠️ Sem garantia
-- 📋 Deve incluir a licença e copyright
-
 ---
 
 <div align="center">
