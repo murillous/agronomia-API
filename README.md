@@ -91,7 +91,7 @@ A estação Ciclus coleta os seguintes parâmetros:
 ### 📍 **Base URL**
 
 ```
-https://agronomia-5jelpsqru-murillous-projects.vercel.app
+https://agronomia-nc8ze89k2-murillous-projects.vercel.app
 ```
 
 ### 🔍 **Endpoints Públicos**
