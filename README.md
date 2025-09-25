@@ -176,7 +176,7 @@ Retorna dados meteorológicos de um período específico.
 
 ```bash
 # Dados das últimas 24 horas
-curl "https://agronomia-5jelpsqru-murillous-projects.vercel.app/api/weather/period?start=1746379687000&end=1746466087000"
+curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/period?start=1746379687000&end=1746466087000"
 ```
 
 ### 🔐 **Endpoint Protegido**
@@ -199,7 +199,7 @@ Endpoint para recebimento de dados da estação meteorológica (uso interno).
 ```javascript
 // Buscar dados mais recentes
 const response = await fetch(
-  "https://agronomia-5jelpsqru-murillous-projects.vercel.app/api/weather/latest?limit=10"
+  "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/latest?limit=10"
 );
 const data = await response.json();
 
@@ -211,13 +211,13 @@ console.log(`Umidade: ${data.data[0].Umidade}%`);
 
 ```bash
 # Status da API
-curl https://agronomia-5jelpsqru-murillous-projects.vercel.app/api/health
+curl https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/health
 
 # Dados mais recentes
-curl "https://agronomia-5jelpsqru-murillous-projects.vercel.app/api/weather/latest?limit=5"
+curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/latest?limit=5"
 
 # Dados do último mês
-curl "https://agronomia-5jelpsqru-murillous-projects.vercel.app/api/weather/period?start=1743787687000&end=1746466087000&limit=1000"
+curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/period?start=1743787687000&end=1746466087000&limit=1000"
 ```
 
 ## 🛠️ Tecnologias Utilizadas
