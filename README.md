@@ -374,7 +374,7 @@ Este projeto foi desenvolvido para apoiar:
 
 ### **Desenvolvimento:**
 
-- 🔬 **Laboratório Thera** - Laboratório de Desenvolvimento de Sistemas
+- 🔬 **Thera Academic Software House** - Laboratório de Desenvolvimento de Sistemas
 - 👨‍💻 **Responsável**: Sérgio Murilo Castelhano
 - 🏛️ **Curso**: Engenharia da Computação - UEMA
 
@@ -395,7 +395,7 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 
 <div align="center">
 
-**🌱 Desenvolvido pelo Laboratório Thera - UEMA**
+**🌱 Desenvolvido por Thera Academic Software House**
 
 _Democratizando o acesso a dados meteorológicos para pesquisa e educação_
 
