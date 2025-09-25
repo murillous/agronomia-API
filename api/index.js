@@ -84,7 +84,7 @@ app.get("/", (req, res) => {
       latest: "GET /api/weather/latest",
       period: "GET /api/weather/period?start=TIMESTAMP&end=TIMESTAMP",
     },
-    documentation: "https://github.com/seu-usuario/ciclus-weather-api",
+    documentation: "https://github.com/murillous/agronomia-API",
   });
 });
 
