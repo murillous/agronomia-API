@@ -1,3 +1,6 @@
+// api/index.js
+// API principal para receber e expor dados meteorológicos Ciclus
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -270,7 +273,7 @@ app.post(
 /**
  * Middleware para capturar rotas não encontradas
  */
-app.use("*", (req, res) => {
+app.use((req, res, next) => {
   res.status(404).json({
     error: "Rota não encontrada",
     message: `${req.method} ${req.originalUrl} não existe`,
