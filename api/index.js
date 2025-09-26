@@ -57,8 +57,8 @@ app.get("/api/health", async (req, res) => {
     res.json({
       status: "OK",
       timestamp: new Date().toISOString(),
-      service: "Ciclus Weather API",
-      version: "1.1.0",
+      service: "API Meteorológica UEMA - Estação Ciclus",
+      version: "1.2.0",
       firebase: firebaseOk ? "connected" : "error",
       environment: process.env.NODE_ENV || "development",
     });
@@ -66,6 +66,7 @@ app.get("/api/health", async (req, res) => {
     res.status(500).json({
       status: "ERROR",
       message: "Problemas na saúde da API",
+      service: 'API Meteorológica UEMA - Estação Ciclus',
       timestamp: new Date().toISOString(),
     });
   }
@@ -77,15 +78,23 @@ app.get("/api/health", async (req, res) => {
  */
 app.get("/", (req, res) => {
   res.json({
-    message: "API Meteorológica Ciclus",
-    version: "1.1.0",
+    message: "API Meteorológica UEMA - Estação Ciclus",
+    description:
+      "Democratizando o acesso a dados meteorológicos para pesquisa e educação",
+    desenvolvedor: {
+      organizacao: "Thera Academic Software House",
+      curso: "Engenharia da Computação - UEMA",
+      responsavel: "Sérgio Murilo Castelhano",
+    },
+    version: "1.2.0",
     endpoints: {
       health: "GET /api/health",
       webhook: "POST /api/webhook/weather (requer x-api-key)",
       latest: "GET /api/weather/latest",
       period: "GET /api/weather/period?start=TIMESTAMP&end=TIMESTAMP",
     },
-    documentation: "https://github.com/murillous/agronomia-API",
+    documentacao: "https://github.com/murillous/agronomia-API",
+    suporte: "Coordenação de Engenharia Agronômica - UEMA",
   });
 });
 
