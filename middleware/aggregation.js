@@ -183,7 +183,7 @@ function calculateAverages(dataArray) {
 
   // Campos da API
   result.receivedAt = new Date().toISOString();
-  result.apiVersion = "1.2.0";
+  result.apiVersion = "1.3.0";
 
   console.log(`📊 Médias calculadas a partir de ${dataArray.length} pacotes`);
   console.log(

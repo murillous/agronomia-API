@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+// Importa nossas funções personalizadas
 const {
   validateWeatherData,
   cleanWeatherData,
@@ -11,6 +12,10 @@ const {
   simpleLogger,
   validateJSON,
 } = require("../middleware/auth");
+const {
+  dataAggregation,
+  getCollectionStatus,
+} = require("../middleware/aggregation");
 const {
   saveWeatherData,
   getLatestWeatherData,
@@ -45,7 +50,7 @@ app.use(simpleLogger);
 // ========================
 
 /**
- * Rota de saúde da API
+ * Rota de saúde da API desenvolvida pela Thera Academic Software House
  * GET /api/health
  */
 app.get("/api/health", async (req, res) => {
@@ -57,22 +62,30 @@ app.get("/api/health", async (req, res) => {
       status: "OK",
       timestamp: new Date().toISOString(),
       service: "API Meteorológica UEMA - Estação Ciclus",
-      version: "1.2.0",
+      version: "1.3.0",
+      desenvolvedor: "Thera Academic Software House - UEMA",
+      responsavel: "Sérgio Murilo Castelhano",
+      proposito:
+        "Democratização de dados meteorológicos para pesquisa acadêmica",
       firebase: firebaseOk ? "connected" : "error",
       environment: process.env.NODE_ENV || "development",
+      uptime: process.uptime
+        ? `${Math.floor(process.uptime() / 60)} minutos`
+        : "N/A",
     });
   } catch (error) {
     res.status(500).json({
       status: "ERROR",
       message: "Problemas na saúde da API",
-      service: 'API Meteorológica UEMA - Estação Ciclus',
+      service: "API Meteorológica UEMA - Estação Ciclus",
+      desenvolvedor: "Thera Academic Software House",
       timestamp: new Date().toISOString(),
     });
   }
 });
 
 /**
- * Rota raiz - Informações básicas da API
+ * Rota raiz - Informações da API desenvolvida pela Thera Academic Software House
  * GET /
  */
 app.get("/", (req, res) => {
@@ -85,7 +98,10 @@ app.get("/", (req, res) => {
       curso: "Engenharia da Computação - UEMA",
       responsavel: "Sérgio Murilo Castelhano",
     },
-    version: "1.2.0",
+    solicitante: "Coordenação de Engenharia Agronômica - UEMA",
+    proposito:
+      "Disponibilizar dados da estação Ciclus sem necessidade de login na plataforma proprietária",
+    version: "1.3.0",
     endpoints: {
       health: "GET /api/health",
       webhook: "POST /api/webhook/weather (requer x-api-key)",
@@ -94,6 +110,26 @@ app.get("/", (req, res) => {
     },
     documentacao: "https://github.com/murillous/agronomia-API",
     suporte: "Coordenação de Engenharia Agronômica - UEMA",
+  });
+});
+
+/**
+ * Status da janela de coleta (útil para debug)
+ * GET /api/collection/status
+ */
+app.get("/api/collection/status", (req, res) => {
+  const status = getCollectionStatus();
+
+  res.json({
+    success: true,
+    collectionWindow: status,
+    description: status.isActive
+      ? "Janela de coleta ativa - agregando dados"
+      : "Aguardando próxima requisição para iniciar janela",
+    nextProcessingIn:
+      status.remainingTime > 0
+        ? `${Math.ceil(status.remainingTime / 1000)} segundos`
+        : "N/A",
   });
 });
 
@@ -207,68 +243,46 @@ app.get("/api/weather/period", async (req, res) => {
  * POST /api/webhook/weather
  * Headers: { "x-api-key": "seu-uuid-secreto", "Content-Type": "application/json" }
  * Body: { dados meteorológicos conforme documentação }
+ * Agregação: Coleta dados por 1 minuto e calcula médias
  */
 app.post(
   "/api/webhook/weather",
   validateJSON,
   authenticateWebhook,
-  async (req, res) => {
-    try {
-      const receivedData = req.body;
+  dataAggregation(async (aggregatedData) => {
+    // Callback que será chamado após 1 minuto de coleta
 
-      console.log("📡 Dados recebidos da estação meteorológica");
+    // ETAPA 1: Validação dos dados agregados
+    const validation = validateWeatherData(aggregatedData);
 
-      // ETAPA 1: Validação dos dados
-      const validation = validateWeatherData(receivedData);
-
-      if (!validation.isValid) {
-        console.warn("⚠️ Dados inválidos recebidos:", validation.error);
-        return res.status(400).json({
-          error: "Dados inválidos",
-          message: validation.error,
-        });
-      }
-
-      // Log de warnings (sensores que podem ter falhado)
-      if (validation.warnings && validation.warnings.length > 0) {
-        console.warn("⚠️ Avisos de validação:", validation.warnings);
-      }
-
-      // ETAPA 2: Limpeza e padronização dos dados
-      const cleanedData = cleanWeatherData(receivedData);
-
-      console.log("🧹 Dados limpos e padronizados");
-      console.log(
-        `📊 Sensores funcionando: ${
-          validation.workingSensors?.join(", ") || "N/A"
-        }`
-      );
-
-      // ETAPA 3: Salvar no Firestore
-      const result = await saveWeatherData(cleanedData);
-
-      // ETAPA 4: Resposta de sucesso
-      res.status(200).json({
-        success: true,
-        message: "Dados meteorológicos recebidos e armazenados com sucesso",
-        documentId: result.documentId,
-        timestamp: result.timestamp,
-        receivedAt: cleanedData.receivedAt,
-        workingSensors: validation.workingSensors?.length || 0,
-        warnings: validation.warnings || [],
-      });
-
-      console.log("✅ Dados salvos com sucesso no Firestore");
-    } catch (error) {
-      console.error("❌ Erro ao processar webhook:", error);
-
-      // Retorna erro genérico (não expõe detalhes internos)
-      res.status(500).json({
-        error: "Erro interno do servidor",
-        message: "Falha ao processar os dados meteorológicos",
-      });
+    if (!validation.isValid) {
+      console.warn("⚠️ Dados agregados inválidos:", validation.error);
+      throw new Error(`Validação falhou: ${validation.error}`);
     }
-  }
+
+    // Log de warnings se houver
+    if (validation.warnings && validation.warnings.length > 0) {
+      console.warn(
+        "⚠️ Avisos na validação dos dados agregados:",
+        validation.warnings
+      );
+    }
+
+    // ETAPA 2: Limpeza e padronização dos dados
+    const cleanedData = cleanWeatherData(aggregatedData);
+
+    console.log("🧹 Dados agregados limpos e padronizados");
+    console.log(
+      `📊 Dados baseados em ${aggregatedData.aggregation.packetsCollected} pacotes`
+    );
+
+    // ETAPA 3: Salvar no Firestore
+    const result = await saveWeatherData(cleanedData);
+
+    console.log("✅ Dados agregados salvos com sucesso no Firestore");
+
+    return result;
+  })
 );
 
 // ========================
