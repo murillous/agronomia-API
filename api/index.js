@@ -11,7 +11,7 @@ const {
   simpleLogger,
   validateJSON,
 } = require("../middleware/auth");
-import { simpleTimeout } from "../middleware/timeout";
+const { simpleTimeout } = require("../middleware/timeout");
 const {
   saveWeatherData,
   getLatestWeatherData,
