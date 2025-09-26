@@ -4,7 +4,7 @@ let lastRequestTime = 0;
  * Middleware simples para timeout entre requisições
  * @param {number} timeoutMinutes - Tempo em minutos entre requisições (padrão: 9)
  */
-function simpleTimeout(timeoutMinutes = 9) {
+export function simpleTimeout(timeoutMinutes = 9) {
   const timeoutMs = timeoutMinutes * 60 * 1000;
 
   return (req, res, next) => {
@@ -28,7 +28,3 @@ function simpleTimeout(timeoutMinutes = 9) {
     next();
   };
 }
-
-module.exports = {
-  simpleTimeout,
-};

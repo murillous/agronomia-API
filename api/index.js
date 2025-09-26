@@ -11,6 +11,7 @@ const {
   simpleLogger,
   validateJSON,
 } = require("../middleware/auth");
+import { simpleTimeout } from "../middleware/timeout";
 const {
   saveWeatherData,
   getLatestWeatherData,
@@ -203,6 +204,7 @@ app.post(
   "/api/webhook/weather",
   validateJSON,
   authenticateWebhook,
+  simpleTimeout(9),
   async (req, res) => {
     try {
       const receivedData = req.body;
