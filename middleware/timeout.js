@@ -1,7 +1,7 @@
 let lastRequestTime = 0;
 
 /**
- * Middleware simples para timeout entre requisições
+ * Middleware simples para timeout entre requisições requisições bem sucedidas
  * @param {number} timeoutMinutes - Tempo em minutos entre requisições (padrão: 9)
  */
 function simpleTimeout(timeoutMinutes = 9) {
@@ -24,7 +24,15 @@ function simpleTimeout(timeoutMinutes = 9) {
       });
     }
 
-    lastRequestTime = now;
+    const originalSend = res.send;
+    res.send = (data) => {
+        if(res.statusCode >= 200 && res.statusCode < 300) {
+            lastRequestTime = now;
+            console.log(`✅ Requisição bem-sucedida. Próxima disponível em ${timeoutMinutes} minutos.`);
+        }
+        return originalSend.call(res, data);
+    }
+
     next();
   };
 }
