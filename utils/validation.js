@@ -31,6 +31,8 @@ const FIELD_SPECS = {
   PluviometroH: { type: "integer", min: 0, max: 1000, unit: "mm" },
   PluviometroD: { type: "integer", min: 0, max: 5000, unit: "mm" },
   Pressao: { type: "float", min: 800, max: 1200, unit: "hPa" },
+  pontoOrvalho: { type: "float", min: -50, max: 70, unit: "°C" },
+  sensacaoTermica: { type: "float", min: -50, max: 70, unit: "°C" },
 
   // Vento
   VelocidadeMedia: { type: "float", min: 0, max: 200, unit: "m/s" },
