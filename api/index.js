@@ -57,7 +57,7 @@ app.get("/api/health", async (req, res) => {
       status: "OK",
       timestamp: new Date().toISOString(),
       service: "Ciclus Weather API",
-      version: "1.1.0",
+      version: "1.2.0",
       firebase: firebaseOk ? "connected" : "error",
       environment: process.env.NODE_ENV || "development",
     });
@@ -77,7 +77,7 @@ app.get("/api/health", async (req, res) => {
 app.get("/", (req, res) => {
   res.json({
     message: "API Meteorológica Ciclus",
-    version: "1.1.0",
+    version: "1.2.0",
     endpoints: {
       health: "GET /api/health",
       webhook: "POST /api/webhook/weather (requer x-api-key)",

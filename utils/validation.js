@@ -346,7 +346,7 @@ function cleanWeatherData(data) {
 
   // Adiciona metadados da nossa API
   cleaned.receivedAt = new Date().toISOString();
-  cleaned.apiVersion = "1.1.0";
+  cleaned.apiVersion = "1.2.0";
 
   return cleaned;
 }

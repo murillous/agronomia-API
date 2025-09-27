@@ -2,7 +2,7 @@
 
 > API intermediária para captura e disponibilização de dados meteorológicos da estação Ciclus instalada na Universidade Estadual do Maranhão (UEMA).
 
-[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=agronomia-api)](https://agronomia-5jelpsqru-murillous-projects.vercel.app)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=agronomia-api)](https://agronomia-api.vercel.app)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange.svg)](https://firebase.google.com/)
 [![Express.js](https://img.shields.io/badge/Express.js-4.x-blue.svg)](https://expressjs.com/)
@@ -91,7 +91,7 @@ A estação Ciclus coleta os seguintes parâmetros:
 ### 📍 **Base URL**
 
 ```
-https://agronomia-nc8ze89k2-murillous-projects.vercel.app
+https://agronomia-api.vercel.app/
 ```
 
 ### 🔍 **Endpoints Públicos**
@@ -176,7 +176,7 @@ Retorna dados meteorológicos de um período específico.
 
 ```bash
 # Dados das últimas 24 horas
-curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/period?start=1746379687000&end=1746466087000"
+curl "https://agronomia-api.vercel.app/api/weather/period?start=1746379687000&end=1746466087000"
 ```
 
 ### 🔐 **Endpoint Protegido**
@@ -199,7 +199,7 @@ Endpoint para recebimento de dados da estação meteorológica (uso interno).
 ```javascript
 // Buscar dados mais recentes
 const response = await fetch(
-  "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/latest?limit=10"
+  "https://agronomia-api.vercel.app/api/weather/latest?limit=10"
 );
 const data = await response.json();
 
@@ -211,13 +211,13 @@ console.log(`Umidade: ${data.data[0].Umidade}%`);
 
 ```bash
 # Status da API
-curl https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/health
+curl https://agronomia-api.vercel.app/api/health
 
 # Dados mais recentes
-curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/latest?limit=5"
+curl "https://agronomia-api.vercel.app/api/weather/latest?limit=5"
 
 # Dados do último mês
-curl "https://agronomia-nc8ze89k2-murillous-projects.vercel.app/api/weather/period?start=1743787687000&end=1746466087000&limit=1000"
+curl "https://agronomia-api.vercel.app/api/weather/period?start=1743787687000&end=1746466087000&limit=1000"
 ```
 
 ## 🛠️ Tecnologias Utilizadas
@@ -316,7 +316,7 @@ curl http://localhost:3000/api/health
   "ts": "1746466087000",
   "receivedAt": "2025-01-25T10:30:00.000Z",
   "processedAt": "Firebase Server Timestamp",
-  "apiVersion": "1.1.0"
+  "apiVersion": "1.2.0"
 }
 ```
 
@@ -380,8 +380,7 @@ Este projeto foi desenvolvido para apoiar:
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
----
+## Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 <div align="center">
 
