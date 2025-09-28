@@ -322,7 +322,7 @@ function cleanWeatherData(data) {
     const spec = FIELD_SPECS[fieldName];
 
     if (!spec) {
-      // Campo não reconhecido, mantém como está
+
       cleaned[fieldName] = value;
       continue;
     }
@@ -344,8 +344,7 @@ function cleanWeatherData(data) {
     }
   }
 
-  // Adiciona metadados da nossa API
-  cleaned.receivedAt = new Date().toISOString();
+  // Metadados
   cleaned.apiVersion = "1.2.0";
 
   return cleaned;

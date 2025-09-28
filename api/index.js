@@ -244,7 +244,6 @@ app.post(
         message: "Dados meteorológicos recebidos e armazenados com sucesso",
         documentId: result.documentId,
         timestamp: result.timestamp,
-        receivedAt: cleanedData.receivedAt,
         workingSensors: validation.workingSensors?.length || 0,
         warnings: validation.warnings || [],
       });
