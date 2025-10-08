@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel – Agronomia</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="page">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="home.html" class="active">Painel</a>
+      <a href="details.html">Registros</a>
+    </nav>
+
+    <header class="header">
+      <h1 class="h1">Painel do Clima</h1>
+      <p class="subtitle">Estação ID: 123 · Atualizado há 2 minutos</p>
+    </header>
+
+    <!-- Dados principais -->
+    <section class="card" style="text-align:center;">
+      <div style="font-size:52px; font-weight:700; margin-bottom:8px; color:#667eea;">26,4°C</div>
+      <div style="color:#666; font-size:18px; margin-bottom:16px;">Temperatura Ambiente</div>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:24px; text-align:center; margin-bottom:32px;">
+        <div>
+          <div style="font-size:32px; font-weight:600; color:#764ba2;">68%</div>
+          <div style="color:#666; font-size:15px;">Umidade</div>
+        </div>
+        <div>
+          <div style="font-size:32px; font-weight:600; color:#764ba2;">1012</div>
+          <div style="color:#666; font-size:15px;">Pressão (hPa)</div>
+        </div>
+        <div>
+          <div style="font-size:32px; font-weight:600; color:#764ba2;">18,2°C</div>
+          <div style="color:#666; font-size:15px;">Ponto Orvalho</div>
+        </div>
+        <div>
+          <div style="font-size:32px; font-weight:600; color:#764ba2;">24,8°C</div>
+          <div style="color:#666; font-size:15px;">Sensação Térmica</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vento -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Vento</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:20px;">
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">2,4 m/s</div>
+          <div style="color:#666; font-size:14px;">Velocidade Média</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">5,0 m/s</div>
+          <div style="color:#666; font-size:14px;">Velocidade Máxima</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">180°</div>
+          <div style="color:#666; font-size:14px;">Direção (Sul)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Precipitação -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Precipitação</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">0 mm</div>
+          <div style="color:#666; font-size:14px;">Horária</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">2 mm</div>
+          <div style="color:#666; font-size:14px;">Diária</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solo -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Solo (Múltiplas Profundidades)</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:20px;">
+        <div>
+          <div style="font-size:20px; font-weight:600; color:#1a1a1a; margin-bottom:8px;">Nível 1</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2;">30%</div>
+          <div style="color:#666; font-size:13px;">Umidade</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2; margin-top:8px;">22°C</div>
+          <div style="color:#666; font-size:13px;">Temperatura</div>
+        </div>
+        <div>
+          <div style="font-size:20px; font-weight:600; color:#1a1a1a; margin-bottom:8px;">Nível 2</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2;">35%</div>
+          <div style="color:#666; font-size:13px;">Umidade</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2; margin-top:8px;">21°C</div>
+          <div style="color:#666; font-size:13px;">Temperatura</div>
+        </div>
+        <div>
+          <div style="font-size:20px; font-weight:600; color:#1a1a1a; margin-bottom:8px;">Nível 3</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2;">38%</div>
+          <div style="color:#666; font-size:13px;">Umidade</div>
+          <div style="font-size:24px; font-weight:600; color:#764ba2; margin-top:8px;">20°C</div>
+          <div style="color:#666; font-size:13px;">Temperatura</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foliar e Radiação -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Foliar e Radiação</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:20px;">
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">42%</div>
+          <div style="color:#666; font-size:14px;">Umidade Foliar</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">24°C</div>
+          <div style="color:#666; font-size:14px;">Temperatura Foliar</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">240 W/m²</div>
+          <div style="color:#666; font-size:14px;">Radiação Solar</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qualidade do Ar -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Qualidade do Ar</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:20px;">
+        <div>
+          <div style="font-size:24px; font-weight:600; color:#1a1a1a;">12 μg/m³</div>
+          <div style="color:#666; font-size:14px;">PM 1.0</div>
+        </div>
+        <div>
+          <div style="font-size:24px; font-weight:600; color:#1a1a1a;">18 μg/m³</div>
+          <div style="color:#666; font-size:14px;">PM 2.5</div>
+        </div>
+        <div>
+          <div style="font-size:24px; font-weight:600; color:#1a1a1a;">25 μg/m³</div>
+          <div style="color:#666; font-size:14px;">PM 10.0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sistema -->
+    <section class="card">
+      <h2 style="font-size:24px; font-weight:600; margin-bottom:20px; color:#667eea;">Status do Sistema</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:20px;">
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#34c759;">87%</div>
+          <div style="color:#666; font-size:14px;">Bateria</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">-70 dBm</div>
+          <div style="color:#666; font-size:14px;">Sinal (RSSI)</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">32°C</div>
+          <div style="color:#666; font-size:14px;">Temp. Interna</div>
+        </div>
+        <div>
+          <div style="font-size:28px; font-weight:600; color:#1a1a1a;">42</div>
+          <div style="color:#666; font-size:14px;">Reinicializações</div>
+        </div>
+      </div>
+      <div style="margin-top:20px; padding-top:20px; border-top:1px solid #e5e7eb; color:#666; font-size:14px;">
+        <strong>Versão SW:</strong> 1.0.0 · <strong>Versão PCB:</strong> A2 · <strong>MAC ID:</strong> 123456
+      </div>
+    </section>
+
+    <div style="text-align:center; margin-top:32px;">
+      <button class="btn" onclick="location.href='details.html'" style="background:#667eea; color:#fff;">Ver Histórico Completo</button>
+    </div>
+
+    <div class="footer" style="color:#666;">
+      Valores ilustrativos · Sistema de monitoramento Ciclus
+    </div>
+  </div>
+</body>
+</html>
