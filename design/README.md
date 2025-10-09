@@ -1,6 +1,6 @@
-# Design System (humano)
+# Design System
 
-Este design system foi escrito manualmente, com observações práticas para guiar a implementação de uma interface iOS-like. Não há geração automática por IA. É um conjunto de decisões de design pensadas para comunicar clima de forma clara e humana.
+Este design system foi escrito manualmente, com observações práticas para guiar a implementação de uma interface iOS-like.
 
 Princípios
 - Clareza acima de ornamento: priorize dados e contexto.

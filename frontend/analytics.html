@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análises e Gráficos - Ciclus Weather Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="hero">
+    <nav class="nav-hero">
+      <a href="index.html">API</a>
+      <a href="home.html">Dashboard</a>
+      <a href="details.html">Registros</a>
+      <a href="analytics.html" class="active">Análises</a>
+    </nav>
+
+    <div class="container-analytics">
+      <header class="header">
+        <div class="logo">Ciclus Weather Station</div>
+        <h1 class="h1">Análises e Visualizações</h1>
+        <p class="subtitle">Dados em tempo real · Última atualização: <span id="lastUpdate">--:--:--</span></p>
+      </header>
+
+      <!-- Delta T Pulverização -->
+      <section class="card card-deltaq">
+        <h2 class="section-title">🌿 Delta T - Condições para Pulverização</h2>
+        
+        <div class="deltaq-info">
+          <div class="deltaq-status" id="deltaqStatus">
+            <div class="deltaq-value-box">
+              <span class="deltaq-label">Delta T Atual</span>
+              <span class="deltaq-value" id="deltaqValue">--°C</span>
+              <span class="deltaq-recommendation" id="deltaqRecommendation">Calculando...</span>
+            </div>
+            <div class="wind-status-box">
+              <span class="deltaq-label">Velocidade do Vento</span>
+              <span class="deltaq-value" id="windSpeedValue">-- km/h</span>
+              <span class="wind-recommendation" id="windRecommendation">Analisando...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="deltaq-chart-container">
+          <canvas id="deltaqChart"></canvas>
+        </div>
+
+        <div class="deltaq-explanation">
+          <div class="info-card">
+            <h3>❓ O que é Delta T?</h3>
+            <p>Delta T é a diferença entre a temperatura do ar e a temperatura de bulbo úmido. Ele indica a taxa de evaporação das gotas durante a pulverização.</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>🌦 Como usar?</h3>
+            <p>● O gráfico mostra onde o <strong>X preto</strong> está posicionado, representando as condições climáticas atuais da sua estação meteorológica (temperatura e umidade relativa).</p>
+            <p>● O Delta T ideal para pulverização está entre <strong>2°C e 8°C</strong> (faixa verde do gráfico).</p>
+            <p>● Nessa faixa, as gotas evaporam no tempo certo: nem muito rápido (o que reduz a eficiência da aplicação) nem muito devagar (o que aumenta o risco de escorrimento).</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>✅ Quando pulverizar?</h3>
+            <p>● Se o X estiver na <strong>área verde</strong>, as condições são ideais para pulverização.</p>
+            <p>● Se estiver no <strong>amarelo ou vermelho</strong>, evite aplicar, pois as gotas podem evaporar rápido demais ou não secar como deveriam.</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>💨 Atenção ao vento!</h3>
+            <p>Além do Delta T, a velocidade do vento também é essencial:</p>
+            <p>● O ideal é que o vento esteja entre <strong>3 e 12 km/h</strong>.</p>
+            <p>● <strong>Acima de 12 km/h</strong>, há risco de deriva (as gotas podem ser levadas para fora da área-alvo).</p>
+            <p>● <strong>Abaixo de 3 km/h</strong>, pode ocorrer inversão térmica, fazendo com que as gotas fiquem suspensas no ar e não cheguem ao alvo.</p>
+          </div>
+          
+          <div class="info-card disclaimer">
+            <p>💡 <strong>Essa é uma recomendação baseada em boas práticas agrícolas. A decisão final sobre a aplicação é sempre do produtor.</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gauges em Tempo Real -->
+      <section class="card">
+        <h2 class="section-title">📊 Medições em Tempo Real</h2>
+        <div class="gauges-grid">
+          <div class="gauge-container">
+            <canvas id="tempGauge"></canvas>
+            <div class="gauge-label">Temperatura</div>
+            <div class="gauge-value" id="tempGaugeValue">--°C</div>
+          </div>
+          
+          <div class="gauge-container">
+            <canvas id="humidityGauge"></canvas>
+            <div class="gauge-label">Umidade</div>
+            <div class="gauge-value" id="humidityGaugeValue">--%</div>
+          </div>
+          
+          <div class="gauge-container">
+            <canvas id="pressureGauge"></canvas>
+            <div class="gauge-label">Pressão</div>
+            <div class="gauge-value" id="pressureGaugeValue">-- hPa</div>
+          </div>
+          
+          <div class="gauge-container">
+            <canvas id="windGauge"></canvas>
+            <div class="gauge-label">Vento</div>
+            <div class="gauge-value" id="windGaugeValue">-- km/h</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rosa dos Ventos -->
+      <section class="card">
+        <h2 class="section-title">🧭 Direção do Vento</h2>
+        <div class="wind-rose-container">
+          <div class="wind-rose">
+            <div class="wind-rose-arrow" id="windArrow">
+              <svg viewBox="0 0 100 100" width="200" height="200">
+                <circle cx="50" cy="50" r="45" fill="rgba(96, 165, 250, 0.1)" stroke="rgba(96, 165, 250, 0.3)" stroke-width="2"/>
+                <line x1="50" y1="50" x2="50" y2="10" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="50,5 45,15 55,15" fill="#60a5fa"/>
+                <text x="50" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="bold">N</text>
+                <text x="50" y="85" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">S</text>
+                <text x="15" y="55" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">O</text>
+                <text x="85" y="55" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">L</text>
+              </svg>
+            </div>
+            <div class="wind-info">
+              <div class="wind-direction" id="windDirectionText">--</div>
+              <div class="wind-speed" id="windSpeedText">-- km/h</div>
+              <div class="wind-degrees" id="windDegreesText">--°</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gráficos de Temperatura e Umidade -->
+      <section class="card">
+        <h2 class="section-title">📈 Histórico de Temperatura e Umidade</h2>
+        <div class="chart-container">
+          <canvas id="tempHumidityChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Gráfico de Ponto de Orvalho -->
+      <section class="card">
+        <h2 class="section-title">💧 Temperatura vs Ponto de Orvalho</h2>
+        <div class="chart-container">
+          <canvas id="dewPointChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Timeline Precipitação -->
+      <section class="card">
+        <h2 class="section-title">🌧️ Timeline de Precipitação</h2>
+        <div class="precipitation-timeline">
+          <div class="timeline-header">
+            <div class="timeline-stat">
+              <span class="stat-label">Última Hora</span>
+              <span class="stat-value" id="precipHour">-- mm</span>
+            </div>
+            <div class="timeline-stat">
+              <span class="stat-label">Últimas 24h</span>
+              <span class="stat-value" id="precipDay">-- mm</span>
+            </div>
+            <div class="timeline-stat">
+              <span class="stat-label">Acumulado Mensal</span>
+              <span class="stat-value" id="precipMonth">-- mm</span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="precipitationChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gráfico de Pressão -->
+      <section class="card">
+        <h2 class="section-title">📊 Tendência de Pressão Atmosférica</h2>
+        <div class="chart-container">
+          <canvas id="pressureChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Gráfico de Vento -->
+      <section class="card">
+        <h2 class="section-title">💨 Velocidade do Vento</h2>
+        <div class="chart-container">
+          <canvas id="windSpeedChart"></canvas>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Ciclus Weather Station API. Desenvolvido para agricultura de precisão.</p>
+    </footer>
+  </div>
+
+  <script src="analytics.js"></script>
+</body>
+</html>
