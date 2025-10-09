@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registros – Agronomia</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./details.js" defer></script>
+</head>
+<body>
+  <div class="hero">
+    <nav class="nav-hero">
+      <a href="index.html">API</a>
+      <a href="home.html">Dashboard</a>
+      <a href="details.html" class="active">Registros</a>
+      <a href="analytics.html">Análises</a>
+    </nav>
+
+    <div class="container">
+      <nav class="nav-hero">
+        <a href="index.html">Início</a>
+        <a href="home.html">Painel</a>
+        <a href="details.html" class="active">Registros</a>
+      </nav>
+
+      <header class="header">
+        <div class="logo">Ciclus Weather Station</div>
+        <h1 class="h1">Histórico de Leituras</h1>
+        <p class="subtitle">Últimos 20 registros · Estação ID: 123</p>
+      </header>
+
+      <!-- Filtros -->
+      <div class="filters-container">
+        <div class="filter-group">
+          <label for="recordLimit" class="filter-label">Quantidade de Registros:</label>
+          <select id="recordLimit" class="filter-select">
+            <option value="5">5 registros</option>
+            <option value="10">10 registros</option>
+            <option value="20" selected>20 registros</option>
+            <option value="50">50 registros</option>
+            <option value="100">100 registros</option>
+          </select>
+        </div>
+        <button id="applyFilter" class="filter-btn">Aplicar Filtro</button>
+        <button id="exportData" class="filter-btn secondary">Exportar JSON</button>
+      </div>
+
+      <section class="card">
+        <!-- Registro 1 -->
+        <div class="record-item">
+          <div class="record-header">
+            <strong class="record-time">2025-10-08 12:35:10</strong>
+            <span class="record-id">ID: abc123</span>
+          </div>
+          
+          <div class="record-metrics">
+            <div class="record-group">
+              <div class="record-icon">🌡️</div>
+              <div>
+                <div class="record-title">Clima</div>
+                <div class="record-data">Temp: <strong>26,2°C</strong> · Umid: <strong>67%</strong></div>
+                <div class="record-data">Pressão: <strong>1012 hPa</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">💨</div>
+              <div>
+                <div class="record-title">Vento</div>
+                <div class="record-data">Méd: <strong>2,1 m/s</strong> · Máx: <strong>4,8 m/s</strong></div>
+                <div class="record-data">Direção: <strong>180°</strong> (Sul)</div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">🌱</div>
+              <div>
+                <div class="record-title">Solo</div>
+                <div class="record-data">Umid: <strong>30%</strong> · Temp: <strong>22°C</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">☀️</div>
+              <div>
+                <div class="record-title">Radiação</div>
+                <div class="record-data"><strong>220 W/m²</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="record-footer">
+            <span>🔋 Bateria: <strong>87%</strong></span>
+            <span>📶 RSSI: <strong>-70 dBm</strong></span>
+            <span>⚙️ Boot: <strong>42</strong></span>
+            <span class="status-ok">✓ API v1.2.0</span>
+          </div>
+        </div>
+
+        <!-- Registro 2 -->
+        <div class="record-item">
+          <div class="record-header">
+            <strong class="record-time">2025-10-08 12:30:10</strong>
+            <span class="record-id">ID: abc124</span>
+          </div>
+          
+          <div class="record-metrics">
+            <div class="record-group">
+              <div class="record-icon">🌡️</div>
+              <div>
+                <div class="record-title">Clima</div>
+                <div class="record-data">Temp: <strong>26,0°C</strong> · Umid: <strong>68%</strong></div>
+                <div class="record-data">Pressão: <strong>1012 hPa</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">💨</div>
+              <div>
+                <div class="record-title">Vento</div>
+                <div class="record-data">Méd: <strong>2,4 m/s</strong> · Máx: <strong>5,0 m/s</strong></div>
+                <div class="record-data">Direção: <strong>185°</strong> (Sul)</div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">🌱</div>
+              <div>
+                <div class="record-title">Solo</div>
+                <div class="record-data">Umid: <strong>31%</strong> · Temp: <strong>22°C</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">☀️</div>
+              <div>
+                <div class="record-title">Radiação</div>
+                <div class="record-data"><strong>240 W/m²</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="record-footer">
+            <span>🔋 Bateria: <strong>87%</strong></span>
+            <span>📶 RSSI: <strong>-68 dBm</strong></span>
+            <span>⚙️ Boot: <strong>42</strong></span>
+            <span class="status-ok">✓ API v1.2.0</span>
+          </div>
+        </div>
+
+        <!-- Registro 3 -->
+        <div class="record-item">
+          <div class="record-header">
+            <strong class="record-time">2025-10-08 12:25:10</strong>
+            <span class="record-id">ID: abc125</span>
+          </div>
+          
+          <div class="record-metrics">
+            <div class="record-group">
+              <div class="record-icon">🌡️</div>
+              <div>
+                <div class="record-title">Clima</div>
+                <div class="record-data">Temp: <strong>25,9°C</strong> · Umid: <strong>69%</strong></div>
+                <div class="record-data">Pressão: <strong>1011 hPa</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">💨</div>
+              <div>
+                <div class="record-title">Vento</div>
+                <div class="record-data">Méd: <strong>2,3 m/s</strong> · Máx: <strong>4,9 m/s</strong></div>
+                <div class="record-data">Direção: <strong>175°</strong> (Sul)</div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">🌱</div>
+              <div>
+                <div class="record-title">Solo</div>
+                <div class="record-data">Umid: <strong>30%</strong> · Temp: <strong>21°C</strong></div>
+              </div>
+            </div>
+            <div class="record-group">
+              <div class="record-icon">☀️</div>
+              <div>
+                <div class="record-title">Radiação</div>
+                <div class="record-data"><strong>230 W/m²</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="record-footer">
+            <span>🔋 Bateria: <strong>86%</strong></span>
+            <span>📶 RSSI: <strong>-72 dBm</strong></span>
+            <span>⚙️ Boot: <strong>42</strong></span>
+            <span class="status-ok">✓ API v1.2.0</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Desenvolvido para agricultura de precisão · <a href="index.html">Voltar ao início</a></p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
+          <span>⚙️ Boot: <strong>42</strong></span>
+          <span style="color:#34c759; font-weight:600;">✓ API v1.2.0</span>
+        </div>
+      </div>
+      
+      <div style="display:flex; gap:12px; justify-content:center; margin-top:24px; padding-top:24px; border-top:1px solid #e5e7eb;">
+        <button class="btn secondary" onclick="alert('Exportar CSV com todos os campos')">Exportar CSV</button>
+        <button class="btn" onclick="alert('Ver no mapa com geolocalização')">Ver no mapa</button>
+      </div>
+    </section>
+
+    <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px; padding:16px; margin-top:24px;">
+      <div style="font-size:14px; color:#0369a1;">
+        <strong>💡 Campos disponíveis:</strong> Temperatura, Umidade, Pressão, Ponto de Orvalho, Sensação Térmica, Velocidade/Direção do Vento, 
+        Pluviometria (Horária/Diária), Solo (3 níveis), Foliar, Radiação Solar, Qualidade do Ar (PM 1.0/2.5/10.0), 
+        Bateria, RSSI, Temperatura Interna, Boot Count, Versões SW/PCB, MAC ID, Timestamp, API Version.
+      </div>
+    </div>
+
+    <div class="footer" style="color:#666;">
+      Lista ilustrativa · Integração com Firestore
+    </div>
+  </div>
+</body>
+</html>

@@ -270,7 +270,26 @@ npm run dev
 
 # Produção local
 npm start
+
+# Server install 
+npm i serve (y) -> escolha 
+
+npx serve .\frontend
+
+saida: 
+   ┌──────────────────────────────────────────┐
+   │                                          │
+   │   Serving!                               │
+   │                                          │
+   │   - Local:    http://localhost:PORT      │
+   │   - Network:  http://SEU_IP:PORT         │
+   │                                          │
+   │   Copied local address to clipboard!     │
+   │                                          │
+   └──────────────────────────────────────────┘
+
 ```
+
 
 ### **5. Teste**
 
