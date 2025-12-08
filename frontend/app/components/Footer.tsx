@@ -74,7 +74,7 @@ export default function Footer() {
         {/* Copyright / Versão */}
         <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400">
           <p>
-            &copy; {new Date().getFullYear()} Ciclus Weather Station. Todos os
+            &copy; {new Date().getFullYear()} Thera Software House. Todos os
             direitos reservados.
           </p>
           <p className="flex items-center gap-1 mt-2 md:mt-0">
